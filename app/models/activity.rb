@@ -1,4 +1,7 @@
 class Activity < ActiveRecord::Base
+  include ActionController::UrlWriter
+  default_url_options[:host] = APP_CONFIG[:domain]
+
   attr_accessible :url_id, :published_at, :verb, :title, :summary, :lang
   attr_accessible :actor_attributes, :target_attributes, :object_attributes
 
@@ -25,8 +28,8 @@ class Activity < ActiveRecord::Base
 
   def to_json
     a = {
-      :id => self.id, # XXX must be an URL
-      :permalinkUrl => self.id, # XXX must be an URL
+      :id => activity_url(self),
+      :permalinkUrl => activity_url(self),
       :title => self.title,
       :summary => self.summary,
       :postedTime => self.published_at.to_s(:w3cdtf),
@@ -61,8 +64,8 @@ class Activity < ActiveRecord::Base
   def to_xml
     builder = Builder::XmlMarkup.new(:indent => 2)
     builder.entry do |b|
-      b.id self.id
-      b.permalink self.id
+      b.id activity_url(self)
+      b.permalink activity_url(self)
       b.published self.published_at.to_s(:w3cdtf)
       b.title self.title
       b.summary self.summary
@@ -78,14 +81,14 @@ class Activity < ActiveRecord::Base
       b.activity :object do
         b.id self.object.url_id
         b.title self.object.title, :type => 'text'
-        b.activity "object-type", self.object.object_type
+        b.activity :"object-type", self.object.object_type
       end
 
       if self.target.present?
         b.activity :target do
           b.id self.target.url_id
           b.title self.target.title, :type => 'text'
-          b.activity "object-type", self.target.object_type
+          b.activity :"object-type", self.target.object_type
         end
       end
     end
