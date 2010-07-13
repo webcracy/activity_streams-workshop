@@ -1,0 +1,9 @@
+h1. Activity Streams Worskhop
+
+This Rails 2.3.8 application allows you to test the construction of Activity Streams.
+
+You can also use it to test posting Activity Streams to other applications, such as the Aidentiti server.
+
+h3. Credits
+
+By "Ruben Fonseca":http://0x82.com and "Alex Solleiro":http://webcracy.org.
