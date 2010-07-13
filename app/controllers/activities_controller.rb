@@ -17,6 +17,11 @@ class ActivitiesController < ApplicationController
     @activity.user = current_user
 
     if @activity.save
+      unless logged_in?
+        session[:activities] ||= []
+        session[:activities] << @activity.id
+      end
+
       flash[:notice] = "Successfully created activity."
       redirect_to @activity
     else
