@@ -6,4 +6,12 @@ class Activity < ActiveRecord::Base
   has_one :actor
   has_one :object, :class_name => 'Obj'
   has_one :target
+
+  accepts_nested_attributes_for :actor, :object, :target
+
+  def self.verbs_to_select
+    [
+      ['POST', "http://activitystrea.ms/schema/1.0/post"]
+    ]
+  end
 end
