@@ -1,9 +1,92 @@
 h1. Activity Streams Worskhop
 
-This Rails 2.3.8 application allows you to test the construction of Activity Streams.
+This Rails 2.3.8 application allows you to test the construction of Activity Streams. You can see it in action at "http://asws.heroku.com":http://asws.heroku.com or clone and fork this repository.
 
 You can also use it to test posting Activity Streams to other applications, such as the Aidentiti server.
 
-h3. Credits
+h2. About Activity Streams
+
+According to the "Activity Streams Website":http://activitystrea.ms, Activity Streams is "a format for syndicating social activities around the web".
+
+"John liked Jane's photo" contains one actor (John), one verb ("like"), one object (photo) and one target (Jane). With Activity Streams, this information is written in a standard fashion so that all web applications can understand it.
+
+The format effectively allows you to describe every activity carried out by a person on your app in a machine-readable and humane way.
+
+This application is a generic Activity Streams builder. Its primary objective is to allow every developer to play with the format and learn how to use it. 
+The app also aims to serve the community by both being up-to-date with the latest format evolutions and serving as a useful collaborative tool to work on these evolutions.
+
+h2. Aidentiti integration
+
+This app also serves as a sample Aidentiti integration. 
+It demonstrates what steps you can take in order to integrate your existing apps with the Aidentiti platform, or to create a new Aidentiti application.
+
+Aidentiti serves as an OAuth authentication platform and an Activity Streams repository.
+
+As such, it should simple enough for any willing web developer to export their user's activities to a central repo they own, a place where they can make sense of the data originated in the many applications they use.
+
+If your app is written in Rails, you can either clone this project and build from it or extract what you need. Otherwise, use this as inspiration for adapting stuff to your language and hang out near Aidentiti-related resources to keep up with the evolution in other languages. The process is described both in general terms and details so this should be useful to you.
+
+h3. General process
+
+# Aidentiti authentication
+# User creation and/or profile information update 
+# Building the Activity Stream
+# Posting the Activity Stream to Aidentiti
+
+h4. 1. Aidentiti Authentication
+
+The Aidentiti Server, like Twitter, Facebook or Google, acts as an Identity Provider. In fact, it acts as a gateway to said apps, among others, but that process is transparent to Aidentiti Consumer applications (like the one you have in mind).
+
+Aidentiti Consumers can therefore execute a normal OAuth workflow on the "Dev Aidentiti Server'":http://aidentiti.heroku.com, or on a user-submitted URL, since Aidentiti Server is released as free software and can be hosted by anyone.
+
+This app, which is an Aidentiti Consumer, implements OAuth using a couple of Rails plugins and gems:
+* the _oauth gem_ ("link":http://github.com/pelle/oauth) and _oauth-plugin_ ("link":http://github.com/pelle/oauth-plugin)
+* the _restful_authentication_ plugin ("link":http://github.com/technoweenie/restful-authentication)
+
+The _oauth_plugin_ gem is great to great you started because it handles the whole OAuth flow for you. All you need to do if you clone this app is edit the _config/initializers/oauth_consumers.rb_ file to point to the Aidentiti Server you'll be working with. You'll quickly notice that you need a different flow for user-submitted Aidentiti Server OAuth Credentials, though.
+
+You can use the "Dev Aidentiti Server":http://aidentiti.heroku.com to test your app. Create an account and register your application in the catalogue.
+
+h4. 2. User creation and/or profile information update
+
+When a user signs up for your app using Aidentiti, or after each login, you are advised to request for updated profile information. 
+
+You can use this profile information to stream the user's identity from Aidentiti (who itself can be streaming it from other providers). If many apps do this, the user's life is easier: you only need to ask them for specific, app-related information and therefore reduce complexity and barriers to adoption.
+
+In this app, you'll see this happen in the _app/controllers/oauth_consumers.rb_ file, especially the _callback_ method.
+
+Likewise, you can access the user's Aidentiti *relationships* and *vocabularies*. 
+
+If your app uses groups, or similar features, you can build on this information and allow the user's existing relationships to flow into yours. 
+
+Vocabularies are like iTunes' Smart Playlists. With Smart Playlists, users can select a series of criterion to filter a list of relevant tracks. For example, with the filters "60's" and "Jazz", only Jazz tracks from the 60's would be listed. If you wanted your application to send information to a user's Aidentiti Server that was related with either Jazz or the 60's, you could specify it using the Vocabularies. On their end, the user would be able to relate disparate information, like music files and info coming from your app, say, "recipes from jazz clubs in the 60's". 
+
+h4. 3. Building the Activity Stream
+
+This app is a generic Activity Streams builder, so it's perfect to understand how it can be done. It also is able to post them to Aidentiti, and makes it also perfect understand how that can be done.
+
+In your, say, to-do lists app, the idea would be to generate and post an Activity Stream to Aidentiti every time the user does a relevant action, like creating or updating (or deleting) a task.
+
+h4. 4. Posting the Activity Stream to Aidentiti
+
+Then all you have to is post to Aidentiti. Fire and forget.
+
+h3. Important blocks to watch
+
+If you want to integrate your app with Aidentiti, these are the important chunks of code you should port to your app:
+
+* The Aidentiti lib, in _lib/aidentiti.rb_ and _lib/aidentiti/*_
+* The _config/initializers/oauth_consumers.rb_ file 
+* The _callback_ and private methods in _app/controllers/oauth_consumers.rb_ 
+
+
+h3. More information
+
+* "Activity Streams Website, Documentation, Wiki and Mailing List":http://activitystrea.ms
+* "Ruby Activity Streams Parser":http://github.com/webcracy/activity_streams
+* "About Aidentiti":http://webcracy.org/aidentiti
+
+
+h2. Credits
 
 By "Ruben Fonseca":http://0x82.com and "Alex Solleiro":http://webcracy.org.
