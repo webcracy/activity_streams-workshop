@@ -10,6 +10,12 @@
   ago
 
 
+%h3 JSON
+~ CodeRay.scan(@activity.to_json, 'json').div(:line_numbers => :table, :css => :class)
+
+%h3 XML
+~ CodeRay.scan(@activity.to_xml, 'xml').div(:line_numbers => :table, :css => :class)
+
 %p
   = link_to "Edit", edit_activity_path(@activity)
   |

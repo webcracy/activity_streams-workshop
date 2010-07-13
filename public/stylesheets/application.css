@@ -61,3 +61,53 @@ a {
     #errorExplanation ul li {
       font-size: 12px;
       list-style: disc; }
+
+.CodeRay {
+  background-color: #232323;
+  border: 1px solid black;
+  font-family: "Courier New", "Terminal", monospace;
+  color: #e6e0db;
+  padding: 3px 5px;
+  overflow: auto;
+  font-size: 12px;
+  margin: 12px 0; }
+  .CodeRay pre {
+    margin: 0px;
+    padding: 0px; }
+  .CodeRay .an {
+    color: #e7be69; }
+  .CodeRay .c {
+    color: #bc9358;
+    font-style: italic; }
+  .CodeRay .ch {
+    color: #509e4f; }
+  .CodeRay .cl {
+    color: white; }
+  .CodeRay .co {
+    color: white; }
+  .CodeRay .fl {
+    color: #a4c260; }
+  .CodeRay .fu {
+    color: #ffc56d; }
+  .CodeRay .gv {
+    color: #d0cffe; }
+  .CodeRay .i {
+    color: #a4c260; }
+  .CodeRay .il {
+    background: #151515; }
+  .CodeRay .iv {
+    color: #d0cffe; }
+  .CodeRay .pp {
+    color: #e7be69; }
+  .CodeRay .r {
+    color: #cb7832; }
+  .CodeRay .rx {
+    color: #a4c260; }
+  .CodeRay .s {
+    color: #a4c260; }
+  .CodeRay .sy {
+    color: #6c9cbd; }
+  .CodeRay .ta {
+    color: #e7be69; }
+  .CodeRay .pc {
+    color: #6c9cbd; }

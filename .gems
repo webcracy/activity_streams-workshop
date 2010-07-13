@@ -4,3 +4,5 @@ oauth-plugin
 haml
 mash
 httparty
+json
+coderay

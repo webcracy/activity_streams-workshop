@@ -20,4 +20,72 @@ class Activity < ActiveRecord::Base
       ['POST', "http://activitystrea.ms/schema/1.0/post"]
     ]
   end
+
+  def to_json
+    a = {
+      :id => self.id, # XXX must be an URL
+      :permalinkUrl => self.id, # XXX must be an URL
+      :title => self.title,
+      :summary => self.summary,
+      :postedTime => self.published_at.to_s(:w3cdtf),
+      :actor => {
+         :id => self.actor.url_id,
+         :title => self.actor.title,
+       },
+       :object => {
+         :id => self.object.url_id,
+         :title => self.object.title,
+         :objectType => self.object.object_type
+       }
+    }
+    
+    if self.target.present?
+      a[:target] = {
+        :id => self.target.url_id,
+        :title => self.target.title,
+        :objectType => self.target.object_type
+      }
+    end
+
+    return JSON.pretty_generate({
+      :data => {
+        :lang => "en-US",
+        :id => self.id,
+        :items => [ a ]
+      }
+    }.stringify_keys)
+  end
+
+  def to_xml
+    builder = Builder::XmlMarkup.new(:indent => 2)
+    builder.entry do |b|
+      b.id self.id
+      b.permalink self.id
+      b.published self.published_at.to_s(:w3cdtf)
+      b.title self.title
+      b.summary self.summary
+      b.author do
+        b.id self.actor.url_id
+        b.title self.actor.title
+      end
+      b.activity :verb, self.verb
+      b.activity :actor do
+        b.id self.actor.url_id
+        b.title self.actor.title, :type => 'text'
+      end
+      b.activity :object do
+        b.id self.object.url_id
+        b.title self.object.title, :type => 'text'
+        b.activity "object-type", self.object.object_type
+      end
+
+      if self.target.present?
+        b.activity :target do
+          b.id self.target.url_id
+          b.title self.target.title, :type => 'text'
+          b.activity "object-type", self.target.object_type
+        end
+      end
+    end
+  end
 end
