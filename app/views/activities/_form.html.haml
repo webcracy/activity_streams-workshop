@@ -5,9 +5,9 @@
     %fieldset 
       %legend Actor
       %p
-        = actor.label :id
+        = actor.label :url_id, "Id"
         %br
-        = actor.text_field :id
+        = actor.text_field :url_id
 
       %p
         = actor.label :title
@@ -24,9 +24,9 @@
     %fieldset 
       %legend Object
       %p
-        = object.label :id
+        = object.label :url_id, "Id"
         %br
-        = object.text_field :id
+        = object.text_field :url_id
 
       %p
         = object.label :object_type
@@ -41,9 +41,9 @@
     %fieldset 
       %legend Target
       %p
-        = target.label :id
+        = target.label :url_id, "Id"
         %br
-        = target.text_field :id
+        = target.text_field :url_id
 
       %p
         = target.label :object_type
