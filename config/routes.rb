@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/oauth_consumers', :controller => 'OauthConsumers', :action => 'index'
+  map.login '/login', :controller => 'OauthConsumers', :action => 'index'
   
   map.root :controller => 'activities', :action => "new"
 end
