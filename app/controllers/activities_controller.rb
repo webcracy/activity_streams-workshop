@@ -1,8 +1,4 @@
 class ActivitiesController < ApplicationController
-  def index
-    @activities = Activity.all
-  end
-  
   def show
     @activity = Activity.find(params[:id])
   end
@@ -13,6 +9,8 @@ class ActivitiesController < ApplicationController
   
   def create
     @activity = Activity.new(params[:activity])
+    @activity.user = current_user
+
     if @activity.save
       flash[:notice] = "Successfully created activity."
       redirect_to @activity
@@ -27,6 +25,8 @@ class ActivitiesController < ApplicationController
   
   def update
     @activity = Activity.find(params[:id])
+    @activity.user = current_user
+
     if @activity.update_attributes(params[:activity])
       flash[:notice] = "Successfully updated activity."
       redirect_to @activity

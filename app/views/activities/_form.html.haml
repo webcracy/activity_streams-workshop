@@ -1,28 +1,76 @@
 - form_for @activity do |f|
   = f.error_messages
-  %p
-    = f.label :url_id
-    %br
-    = f.text_field :url_id
-  %p
-    = f.label :published_at
-    %br
-    = f.datetime_select :published_at
-  %p
-    = f.label :verb
-    %br
-    = f.text_field :verb
-  %p
-    = f.label :title
-    %br
-    = f.text_field :title
-  %p
-    = f.label :body
-    %br
-    = f.text_area :body
-  %p
-    = f.label :lang
-    %br
-    = f.text_field :lang
+
+  - f.fields_for :actor, @activity.actor || @activity.build_actor do |actor|
+    %fieldset 
+      %legend Actor
+      %p
+        = actor.label :url_id, "Id"
+        %br
+        = actor.text_field :url_id
+
+      %p
+        = actor.label :title
+        %br
+        = actor.text_field :title
+
+  %fieldset
+    %legend Verb
+    %p
+      = f.label :verb
+      = f.select :verb, Activity.verbs_to_select
+
+  - f.fields_for :object, @activity.object || @activity.build_object do |object|
+    %fieldset 
+      %legend Object
+      %p
+        = object.label :url_id, "Id"
+        %br
+        = object.text_field :url_id
+
+      %p
+        = object.label :object_type
+        = object.select :object_type, Obj.to_select
+
+      %p
+        = object.label :title
+        %br
+        = object.text_field :title
+
+  - f.fields_for :target, @activity.target || @activity.build_target do |target|
+    %fieldset 
+      %legend Target
+      %p
+        = target.label :url_id, "Id"
+        %br
+        = target.text_field :url_id
+
+      %p
+        = target.label :object_type
+        = target.select :object_type, Target.to_select
+
+      %p
+        = target.label :title
+        %br
+        = target.text_field :title
+
+  %fieldset
+    %legend Activity
+
+    %p
+      = f.label :title
+      %br
+      = f.text_field :title
+
+    %p
+      = f.label :summary
+      %br
+      = f.text_area :summary
+
+    %p
+      = f.label :published_at
+      %br
+      = f.datetime_select :published_at
+
   %p
     = f.submit

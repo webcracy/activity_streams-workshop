@@ -1,27 +1,18 @@
 - title "Activity"
 
 %p
-  %strong Url:
-  =h @activity.url_id
-%p
-  %strong Published At:
-  =h @activity.published_at
-%p
-  %strong Verb:
-  =h @activity.verb
-%p
-  %strong Title:
-  =h @activity.title
-%p
-  %strong Body:
-  =h @activity.body
-%p
-  %strong Lang:
-  =h @activity.lang
+  = @activity.actor.url_id
+  = @activity.verb
+  = @activity.object.url_id
+  - if @activity.target.present?
+    = @activity.target.url_id
+  = time_ago_in_words @activity.published_at
+  ago
+
 
 %p
   = link_to "Edit", edit_activity_path(@activity)
   |
   = link_to "Destroy", @activity, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", activities_path
+  = link_to "Create another", new_activity_path

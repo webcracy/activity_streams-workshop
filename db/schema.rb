@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100713133745) do
+ActiveRecord::Schema.define(:version => 20100713144023) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
     t.string   "url_id"
     t.string   "verb"
     t.string   "title"
-    t.text     "body"
+    t.text     "summary"
     t.string   "lang"
     t.datetime "published_at"
     t.datetime "created_at"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20100713133745) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "object_type"
   end
 
   add_index "activity_objects", ["activity_id"], :name => "index_activity_objects_on_activity_id"
