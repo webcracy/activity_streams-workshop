@@ -1,23 +1,6 @@
 - title "Activities"
 
-%table
-  %tr
-    %th Url
-    %th Published at
-    %th Verb
-    %th Title
-    %th Body
-    %th Lang
-  - for activity in @activities
-    %tr
-      %td= h activity.url_id
-      %td= h activity.published_at
-      %td= h activity.verb
-      %td= h activity.title
-      %td= h activity.body
-      %td= h activity.lang
-      %td= link_to 'Show', activity
-      %td= link_to 'Edit', edit_activity_path(activity)
-      %td= link_to 'Destroy', activity, :confirm => 'Are you sure?', :method => :delete
+- for activity in @activities
+  %p= activity.to_sentence
 
 %p= link_to "New Activity", new_activity_path

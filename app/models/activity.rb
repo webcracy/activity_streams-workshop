@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  include ActionView::Helpers
   attr_accessible :url_id, :published_at, :verb, :title, :summary, :lang
   attr_accessible :actor_attributes, :target_attributes, :object_attributes
 
@@ -21,6 +22,11 @@ class Activity < ActiveRecord::Base
     [
       ['POST', "http://activitystrea.ms/schema/1.0/post"]
     ]
+  end
+  
+  def to_sentence
+    msg = "<a href='/activities/#{self.id}'>#{self.object.title}</a> - #{time_ago_in_words published_at} ago<br/>"
+    msg += "<a href='#{self.actor.url_id}'>#{self.actor.title}</a> | #{self.verb} | <a href='#{self.object.url_id}'>#{self.object.object_type}</a>"
   end
 
   def to_json
