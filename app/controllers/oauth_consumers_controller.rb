@@ -30,6 +30,16 @@ class OauthConsumersController < ApplicationController
         user = User.find_or_create_by_email(:email => user_profile.email, :login => user_profile.login)
         user.password = user.password_confirmation = user.login.reverse
         user.save
+
+        # Transfer any activities this user created as anonymous to the new found user
+        if session[:activities].present?
+          session[:activities].each do |a|
+            activity = Activity.find(a) rescue nil
+            activity.try(:update_attribute, :user_id, user.id)
+          end
+          session[:activities] = []
+        end
+
         # Create a new session
         reset_session
         self.current_user = user
