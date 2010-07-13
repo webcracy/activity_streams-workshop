@@ -4,6 +4,6 @@ class Activity < ActiveRecord::Base
   has_many :activity_objects, :dependent => :destroy
 
   has_one :actor
-  has_one :object
+  has_one :object, :class_name => 'Obj'
   has_one :target
 end
