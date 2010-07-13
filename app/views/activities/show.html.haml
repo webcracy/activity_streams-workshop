@@ -1,11 +1,18 @@
 - title "Activity"
 
 %p
-  = @activity.actor.url_id
-  = @activity.verb
-  = @activity.object.url_id
+  - link_to @activity.actor.url_id do
+    = @activity.actor.title.present? ? @activity.actor.title : @activity.actor.url_id
+
+  %abbr{:title => @activity.verb}= @activity.verb.split('/').last.upcase
+
+  - link_to @activity.object.url_id do
+    = @activity.object.title.present? ? @activity.object.title : @activity.object.url_id
+
   - if @activity.target.present?
-    = @activity.target.url_id
+    - link_to @activity.target.url_id do
+      = @activity.target.title.present? ? @activity.target.title : @activity.target.url_id
+
   = time_ago_in_words @activity.published_at
   ago
 
