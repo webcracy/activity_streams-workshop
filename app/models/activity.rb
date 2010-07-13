@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  attr_accessible :url_id, :published_at, :verb, :title, :body, :lang
+  attr_accessible :url_id, :published_at, :verb, :title, :summary, :lang
 
   has_many :activity_objects, :dependent => :destroy
 
