@@ -3,7 +3,7 @@
   
   %head
     %title
-      = h(yield(:title) || "Untitled")
+      = h(yield(:title) || "Activity Streams Workshop")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application'
     = javascript_include_tag :defaults
@@ -13,6 +13,7 @@
     #container
       #user_bar{:style => 'float:right;'}
         = render :partial => 'users/user_bar'
+        
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       
