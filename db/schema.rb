@@ -9,7 +9,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100713115031) do
+ActiveRecord::Schema.define(:version => 20100713133745) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "url_id"
+    t.string   "verb"
+    t.string   "title"
+    t.text     "body"
+    t.string   "lang"
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
+
+  create_table "activity_objects", :force => true do |t|
+    t.integer  "activity_id"
+    t.string   "type"
+    t.string   "url_id"
+    t.string   "title"
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_objects", ["activity_id"], :name => "index_activity_objects_on_activity_id"
+  add_index "activity_objects", ["type"], :name => "index_activity_objects_on_type"
 
   create_table "consumer_tokens", :force => true do |t|
     t.integer  "user_id"

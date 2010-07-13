@@ -1,0 +1,15 @@
+one:
+  url_id: MyString
+  published_at: 2010-07-13 14:34:03
+  verb: MyString
+  title: MyString
+  body: MyText
+  lang: MyString
+
+two:
+  url_id: MyString
+  published_at: 2010-07-13 14:34:03
+  verb: MyString
+  title: MyString
+  body: MyText
+  lang: MyString
