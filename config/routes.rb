@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :activities
 
+  map.resources :activities
   map.resources :oauth_consumers,:member=>{:callback=>:get}
   map.resources :users
   map.resource :session
@@ -10,5 +10,5 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   
-  map.root :controller => 'oauth_consumers'
+  map.root :controller => 'activities', :action => "new"
 end

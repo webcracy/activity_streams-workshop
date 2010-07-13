@@ -22,8 +22,8 @@ Rails::Initializer.run do |config|
   config.gem 'haml'
   config.gem 'oauth'
   config.gem 'oauth-plugin'
-  config.gem 'mash'
-  config.gem 'httparty'
+  config.gem 'mash', :lib => nil
+  config.gem 'httparty', :lib => nil
   config.gem 'json'
   config.gem 'coderay'
   config.gem 'builder'
