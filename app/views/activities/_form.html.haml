@@ -1,0 +1,28 @@
+- form_for @activity do |f|
+  = f.error_messages
+  %p
+    = f.label :url_id
+    %br
+    = f.text_field :url_id
+  %p
+    = f.label :published_at
+    %br
+    = f.datetime_select :published_at
+  %p
+    = f.label :verb
+    %br
+    = f.text_field :verb
+  %p
+    = f.label :title
+    %br
+    = f.text_field :title
+  %p
+    = f.label :body
+    %br
+    = f.text_area :body
+  %p
+    = f.label :lang
+    %br
+    = f.text_field :lang
+  %p
+    = f.submit

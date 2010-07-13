@@ -1,0 +1,13 @@
+one:
+  activity_id: 1
+  type: MyString
+  url_id: MyString
+  title: MyString
+  published_at: 2010-07-13 14:37:45
+
+two:
+  activity_id: 1
+  type: MyString
+  url_id: MyString
+  title: MyString
+  published_at: 2010-07-13 14:37:45
