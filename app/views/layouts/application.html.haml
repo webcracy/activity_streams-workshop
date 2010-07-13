@@ -11,6 +11,8 @@
   
   %body
     #container
+      #user_bar{:style => 'float:right;'}
+        = render :partial => 'users/user_bar'
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       
