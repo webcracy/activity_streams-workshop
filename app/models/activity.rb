@@ -8,6 +8,8 @@ class Activity < ActiveRecord::Base
   has_one :object, :class_name => 'Obj'
   has_one :target
 
+  belongs_to :user
+
   validates_presence_of :actor
   validates_presence_of :verb
   validates_presence_of :object
