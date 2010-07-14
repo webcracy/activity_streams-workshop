@@ -25,7 +25,17 @@ class Activity < ActiveRecord::Base
 
   def self.verbs_to_select
     [
-      ['POST', "http://activitystrea.ms/schema/1.0/post"]
+      ['POST', "http://activitystrea.ms/schema/1.0/post"],
+      ['FAVORITE', "http://activitystrea.ms/schema/1.0/favorite"],
+      ['FOLLOW', 'http://activitystrea.ms/schema/1.0/follow'],
+      ['LIKE', 'http://activitystrea.ms/schema/1.0/like'],
+      ['MAKE-FRIEND', 'http://activitystrea.ms/schema/1.0/make-friend'],
+      ['JOIN', 'http://activitystrea.ms/schema/1.0/join'],
+      ['PLAY', 'http://activitystrea.ms/schema/1.0/play'],
+      ['SAVE', 'http://activitystrea.ms/schema/1.0/save'],
+      ['SHARE', 'http://activitystrea.ms/schema/1.0/share'],
+      ['TAG', 'http://activitystrea.ms/schema/1.0/tag'],
+      ['UPDATE', 'http://activitystrea.ms/schema/1.0/update']
     ]
   end
   
