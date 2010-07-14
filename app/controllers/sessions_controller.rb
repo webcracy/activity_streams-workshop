@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
+    redirect_to oauth_consumers_path
   end
 
   def create

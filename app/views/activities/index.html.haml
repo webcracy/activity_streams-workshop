@@ -1,6 +1,10 @@
 - title "Activities"
 
 - for activity in @activities
-  %p= activity.to_sentence
+  %p
+    = activity.to_sentence
+    %br
+    = link_to 'Permalink', permalink_path(activity.permalink)
+  
 
 %p= link_to "New Activity", new_activity_path

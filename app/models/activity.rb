@@ -14,10 +14,12 @@ class Activity < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :actor
-  validates_presence_of :verb
-  validates_presence_of :object
-  validates_presence_of :published_at
+  validates_presence_of   :actor
+  validates_presence_of   :verb
+  validates_presence_of   :object
+  validates_presence_of   :published_at
+  
+  before_create :add_permalink
 
   accepts_nested_attributes_for :actor, :object, :target, :reject_if => proc { |p| p['url_id'].blank? }
 
@@ -99,4 +101,19 @@ class Activity < ActiveRecord::Base
       end
     end
   end
+  
+  def add_permalink
+    hash = hash_gen(self)
+    while Activity.find_by_permalink(hash)
+      self.add_permalink
+    end
+    self.permalink = hash
+  end
+  
+  
+  private
+      
+    def hash_gen(activity)
+      return Digest::SHA1.hexdigest(activity.verb.to_s+activity.title.to_s+activity.summary.to_s+Time.now.to_f.to_s).to_s
+    end
 end

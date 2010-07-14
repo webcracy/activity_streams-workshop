@@ -1,5 +1,7 @@
 - title "Activity"
 
+%p= link_to "Permalink", permalink_path(:id => @activity.permalink)
+
 %p
   - link_to @activity.actor.url_id do
     = @activity.actor.title.present? ? @activity.actor.title : @activity.actor.url_id

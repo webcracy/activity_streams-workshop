@@ -1,11 +1,18 @@
 class ActivitiesController < ApplicationController
   
+  before_filter :login_or_oauth_required, :except => [:index, :new, :create, :show_from_permalink]
+  
   def index
     @activities = Activity.find(:all)
   end
 
   def show
     @activity = Activity.find(params[:id])
+  end
+  
+  def show_from_permalink
+    @activity = Activity.find_by_permalink(params[:id])
+    render :action => 'show'
   end
   
   def new
