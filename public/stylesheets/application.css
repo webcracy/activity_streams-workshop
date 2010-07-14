@@ -111,3 +111,48 @@ a {
     color: #e7be69; }
   .CodeRay .pc {
     color: #6c9cbd; }
+
+
+/* hFORM */
+form.hform p { margin-bottom: 10px; }
+form.hform p label { float: left; width: 100px; }
+form.hform p input { width: 200px; }
+form.hform p select { width: 200px; }
+form.hform p input.button { width: auto; }
+form.hform p input.checkbox { width: auto; }
+form.hform p input.radio { width: auto; }
+form.hform p.checkbox { margin-left: 100px; }
+form.hform p.checkbox label { float: none; }
+form.hform p.checkbox input { width: auto; }
+
+
+/* hFORM modification: largeform (forms that use this class should require hform first)*/
+form.largeform {margin-left: 50px;}
+form.largeform {width: 550px;}
+form.largeform fieldset.outter {padding: 20px 0 0 30px;}
+form.largeform legend.outter {font-size: 1.2em;}
+form.largeform h3 { color:#AFAFAF; border-bottom:1px solid;font-size:18px;line-height:20px;margin:40px 0px 20px 0px; width:400px;}
+form.largeform p { margin-bottom: 20px; }
+form.largeform p label { float: left; width: 150px; }
+form.largeform p input { width: 160px; }
+form.largeform p.checkbox { margin-left: 150px; }
+form.largeform p.compact_select { width: 100%; height: 30px; }
+form.largeform p.action_hint { margin: -5px 0 5px 0; padding-left: 3px; background-color: #FFA; width: 300px;}
+form.largeform p.submit {margin-top: 40px;}
+form.largeform span.action_hint { line-height: 16px; font-size: 10px; height: 16px; padding: 2px 0 0 20px; text-transform: uppercase; font-weight: ; }
+form.largeform span.action_hint.email   { background: url('/images/email.png') no-repeat; }
+form.largeform span.action_hint.twitter { background: url('/images/twitter_2.png') no-repeat; }
+form.largeform span.compact_select { width: 200px; clear:both;}
+form.largeform span.hint { clear: both; float: left; width: 145px; margin-right: 5px; line-height: 12px; font-size: 11px; }
+form.largeform input[type="text"], 
+form.largeform input[type="password"] { 
+  height: 1.6em; font-size: 1em; padding-left: 5px; width: 220px;
+  }
+form.largeform input[type="text"].compact { padding-left: 2px; width: 35px;}
+form.largeform select { height: 1.6em; line-height: 1.4em; font-size: 11px; padding-left: 5px;}
+form.largeform select.compact { width:auto; padding-left: 1px;}
+form.largeform div#inner_email.inner_fieldset {margin-bottom: 10px; }
+form.largeform div.inner_fieldset {margin-left: 148px; padding-left: 2px; }
+form.largeform div.inner_fieldset.actions { -webkit-border-radius:2px; -moz-border-radius:2px;}
+
+form.largeform.sticky {margin-left: 0 !important;}

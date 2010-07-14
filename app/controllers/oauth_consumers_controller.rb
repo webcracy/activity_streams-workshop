@@ -15,7 +15,7 @@ class OauthConsumersController < ApplicationController
   # This callback method is heavily modified from the plugin's original to allow session and user creation 
   # from an Aidentiti Oauth Authorization
   def callback
-    @request_token_secret = (session[:yammer_token] ? session[:yammer_token][:request_secret] : session[params[:oauth_token]])
+    @request_token_secret = session[params[:oauth_token]]
     if @request_token_secret
       if params[:id] == 'aidentiti'
         # Create an Aidentiti Oauth Consumer to grab the user's credential

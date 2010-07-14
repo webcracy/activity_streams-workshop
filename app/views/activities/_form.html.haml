@@ -1,17 +1,16 @@
-- form_for @activity do |f|
+- form_for @activity, :html => {:class => 'hform largeform sticky '} do |f|
   = f.error_messages
 
   - f.fields_for :actor, @activity.actor || @activity.build_actor do |actor|
-    %fieldset 
+    %fieldset
       %legend Actor
       %p
         = actor.label :url_id, "Id"
-        %br
         = actor.text_field :url_id
 
       %p
         = actor.label :title
-        %br
+        
         = actor.text_field :title
 
   %fieldset
@@ -25,7 +24,7 @@
       %legend Object
       %p
         = object.label :url_id, "Id"
-        %br
+        
         = object.text_field :url_id
 
       %p
@@ -34,7 +33,7 @@
 
       %p
         = object.label :title
-        %br
+        
         = object.text_field :title
 
   - f.fields_for :target, @activity.target || @activity.build_target do |target|
@@ -42,7 +41,7 @@
       %legend Target
       %p
         = target.label :url_id, "Id"
-        %br
+        
         = target.text_field :url_id
 
       %p
@@ -51,7 +50,7 @@
 
       %p
         = target.label :title
-        %br
+        
         = target.text_field :title
 
   %fieldset
@@ -59,18 +58,18 @@
 
     %p
       = f.label :title
-      %br
+      
       = f.text_field :title
 
     %p
       = f.label :summary
-      %br
+      
       = f.text_area :summary
 
     %p
       = f.label :published_at
-      %br
-      = f.datetime_select :published_at
+      
+      = f.datetime_select :published_at, {}, :class => "compact"
 
   %p
     = f.submit
