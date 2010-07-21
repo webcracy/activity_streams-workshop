@@ -19,13 +19,44 @@ a {
   color: gray;
 } 
 
-#container {
+.round {
+  -webkit-border-radius:2px; 
+  -moz-border-radius:2px;
+  border-radius: 2px;
+}
+
+#page {
   width: 75%;
   margin: 0 auto;
   background: white;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px; }
+
+#nav {
+  width: 100%;
+}
+ul.nav{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  list-style: none;
+}
+ul.nav li {
+  float: left;
+  padding: 7px 9px;
+  background-color: darkblue;
+  margin-right: 20px;
+  border-color: darkblue;
+}
+
+ul.nav li a {
+  color: white;
+  font-size: 16px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
 
 #flash_notice,
 #flash_error {

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100714110115) do
+ActiveRecord::Schema.define(:version => 20100721133530) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20100714110115) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink"
+    t.boolean  "is_public"
+    t.string   "public_name"
   end
 
   add_index "activities", ["user_id"], :name => "index_activities_on_user_id"

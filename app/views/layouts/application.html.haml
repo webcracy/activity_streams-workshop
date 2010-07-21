@@ -1,23 +1,34 @@
 !!! Strict
 %html{html_attrs}
-  
   %head
     %title
       = h(yield(:title) || "Activity Streams Workshop")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    %meta{:name => "description", :content => "Activity Streams Workshop is a place to test and play with the Activity Streams format."}
+    %meta{:name => "keywords", :content => "activity streams, activities, format, schema, test, json, atom, ruby, rails"}
     = stylesheet_link_tag 'application'
     = javascript_include_tag :defaults
     = yield(:head)
   
   %body
-    #container
+    #page
       #user_bar{:style => 'text-align: right; width: 100%;'}
         = render :partial => 'users/user_bar'
-        
+      #nav
+        %ul.nav
+          %li.round 
+            %a{:href => '/'} Home
+          %li.round
+            %a{:href => '/'} New activity
+          %li.round
+            %a{:href => '/activities'} Browse Activities
+          %li.round
+            %a{:href => '/about'} About
+      .clear
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
+      #body
+        - if show_title?
+          %h1=h yield(:title)
       
-      - if show_title?
-        %h1=h yield(:title)
-      
-      = yield
+        = yield

@@ -6,6 +6,7 @@ class ActivitiesController < ApplicationController
       @activities = current_user.activities
     else
       @activities = (session[:activities] || []).map { |a| Activity.find(a) rescue nil }.compact
+      Activity.find(:all, :conditions => {:is_public => true}).map{|a| @activities << a}
     end
   end
 
