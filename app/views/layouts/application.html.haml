@@ -19,11 +19,11 @@
           %li.round 
             %a{:href => '/'} Home
           %li.round
-            %a{:href => '/'} New activity
+            %a{:href => '/activities/new'} New activity
           %li.round
             %a{:href => '/activities'} Browse Activities
           %li.round
-            %a{:href => '/about'} About
+            %a{:href => '/faq'} FAQ
       .clear
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
