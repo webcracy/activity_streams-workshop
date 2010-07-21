@@ -12,6 +12,12 @@ a {
   clear: both;
   height: 0;
   overflow: hidden; }
+  
+.quiet {
+  text-decoration: none;
+  font-size: small;
+  color: gray;
+} 
 
 #container {
   width: 75%;

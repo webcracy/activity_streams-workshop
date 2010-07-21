@@ -5,18 +5,22 @@
     %fieldset
       %legend Actor
       %p
-        = actor.label :url_id, "Id"
-        = actor.text_field :url_id
+        = actor.label :url_id, "Id", :class => "hint"
+        %span.hint.quiet An URL (documentation)
+        = actor.text_field :url_id        
 
       %p
         = actor.label :title
-        
+        %span.hint.quiet 
+          A String (documentation)
         = actor.text_field :title
+        
 
   %fieldset
     %legend Verb
     %p
       = f.label :verb
+      %span.hint.quiet (documentation)
       = f.select :verb, Activity.verbs_to_select
 
   - f.fields_for :object, @activity.object || @activity.build_object do |object|
@@ -24,16 +28,17 @@
       %legend Object
       %p
         = object.label :url_id, "Id"
-        
+        %span.hint.quiet An URL (documentation)
         = object.text_field :url_id
 
       %p
         = object.label :object_type
+        %span.hint.quiet (documentation)
         = object.select :object_type, Obj.to_select
 
       %p
         = object.label :title
-        
+        %span.hint.quiet A String (documentation)
         = object.text_field :title
 
   - f.fields_for :target, @activity.target || @activity.build_target do |target|
@@ -41,16 +46,17 @@
       %legend Target
       %p
         = target.label :url_id, "Id"
-        
+        %span.hint.quiet An URL (documentation)
         = target.text_field :url_id
 
       %p
         = target.label :object_type
+        %span.hint.quiet (documentation)
         = target.select :object_type, Target.to_select
 
       %p
         = target.label :title
-        
+        %span.hint.quiet A String (documentation)
         = target.text_field :title
 
   %fieldset
@@ -58,17 +64,17 @@
 
     %p
       = f.label :title
-      
+      %span.hint.quiet HTML (documentation)
       = f.text_field :title
 
     %p
       = f.label :summary
-      
+      %span.hint.quiet HTML (documentation)
       = f.text_area :summary
 
     %p
       = f.label :published_at
-      
+      %span.hint.quiet (documentation)
       = f.datetime_select :published_at, {}, :class => "compact"
 
   %p
