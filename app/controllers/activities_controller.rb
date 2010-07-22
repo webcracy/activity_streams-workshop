@@ -6,8 +6,8 @@ class ActivitiesController < ApplicationController
       @activities = current_user.activities.reverse
     else
       @activities = (session[:activities] || []).map { |a| Activity.find(a) rescue nil }.compact
-      Activity.find(:all, :conditions => {:is_public => true}).reverse.map{|a| @activities << a}
     end
+    @public_activities = Activity.reverse.are_public
   end
 
   def show

@@ -15,6 +15,7 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   
   named_scope :reverse, :order => 'created_at DESC'
+  named_scope :are_public, :conditions => {:is_public => true}
 
   validates_presence_of   :actor
   validates_presence_of   :verb
