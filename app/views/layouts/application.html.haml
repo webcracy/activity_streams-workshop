@@ -2,7 +2,7 @@
 %html{html_attrs}
   %head
     %title
-      = h(yield(:title) + ' - Activity Streams Workshop' || "Activity Streams Workshop")
+      = h(yield(:title).to_s + ' - Activity Streams Workshop')
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     %meta{:name => "description", :content => "Activity Streams Workshop is a place to test and play with the Activity Streams format."}
     %meta{:name => "keywords", :content => "activity streams, activities, format, schema, test, json, atom, ruby, rails"}
@@ -12,23 +12,27 @@
   
   %body
     #page
-      #user_bar{:style => 'text-align: right; width: 100%;'}
-        = render :partial => 'users/user_bar'
-      #nav
-        %ul.nav
-          %li.round 
-            %a{:href => '/'} Home
-          %li.round
-            %a{:href => '/activities/new'} New activity
-          %li.round
-            %a{:href => '/activities'} Browse Activities
-          %li.round
-            %a{:href => '/faq'} FAQ
-      .clear
-      - flash.each do |name, msg|
-        = content_tag :div, msg, :id => "flash_#{name}"
+      #header
+        #top
+          %h1{:style => 'float: left;'} Activity Streams Workshop
+          #user_bar{:style => 'float: right; text-align: right; '}
+            = render :partial => 'users/user_bar'
+        .clear
+        #nav
+          %ul.nav
+            %li.round 
+              %a{:href => '/'} Home
+            %li.round
+              %a{:href => '/activities/new'} New activity
+            %li.round
+              %a{:href => '/activities'} Browse Activities
+            %li.round
+              %a{:href => '/faq'} FAQ
+        .clear
       #body
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
         - if show_title?
-          %h1=h yield(:title)
+          %h2=h yield(:title)
       
         = yield
