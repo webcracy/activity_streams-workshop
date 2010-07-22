@@ -1,11 +1,11 @@
 - title "Activities"
 
+%p.manage.x-l-margin= link_to "New Activity", new_activity_path, :class => 'new'
+
 %ul#activities
   - for activity in @activities
     %li
       = render :partial => 'activity', :locals => {:activity => activity}
-      %br
-      
   
 
-%p= link_to "New Activity", new_activity_path
+

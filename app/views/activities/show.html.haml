@@ -1,7 +1,8 @@
 - title "Activity"
--if logged_in? and  @activity.user_id == current_user.id
-  %p.manage
-    = link_to "Permalink", permalink_path(@activity.permalink), :class => 'link'
+
+%p.manage
+  = link_to "Permalink", permalink_path(@activity.permalink), :class => 'link'
+  -if logged_in? and  @activity.user_id == current_user.id
     |
     = link_to "Edit", edit_activity_path(@activity), :class => 'edit'
     |
@@ -18,4 +19,7 @@
 
 %h3 XML
 ~ CodeRay.scan(@activity.to_xml, 'xml').div(:line_numbers => :table, :css => :class)
+
+%h3 FORM
+= render :partial => 'form'
 

@@ -77,5 +77,6 @@
       %span.hint.quiet (documentation)
       = f.datetime_select :published_at, {}, :class => "compact"
 
-  %p
-    = f.submit
+  - if controller.action_name == 'new' or controller.action_name == 'edit'
+    %p
+      = f.submit

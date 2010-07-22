@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-color: #4b7399;
-  font-family: Verdana, Helvetica, Arial;
+  font-family: 'Lucida Grande', Tahoma, Verdana, Arial;
   font-size: 14px; }
 
 a {
@@ -157,11 +157,33 @@ p.manage {
   margin: -40px 0 25px 100px;
 }
 
+p.manage.x-l-margin {
+  margin-left: 120px;
+}
+
 #activity {
-  margin: 40px 20px;
+  margin: 50px 20px;
+}
+
+.activity {
+  border-left: 2px solid gray;
+  padding-left: 10px;
+}
+
+.object {
+  width: 550px;
+  margin: 5px;
+}
+
+.object .left {
+  float: left;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 12px;
 }
 
 .linked-object {
+  float:left;
   margin: 5px 0 0 10px;
   border: 1px dashed gray;
   padding: 10px;

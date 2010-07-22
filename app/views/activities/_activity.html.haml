@@ -1,22 +1,30 @@
-- link_to activity.actor.url_id do
-  = activity.actor.title.present? ? activity.actor.title : activity.actor.url_id
-&nbsp;
-%abbr{:title => activity.verb}= activity.verb.split('/').last.upcase
-a
-%abbr{:title => activity.object.object_type }= activity.object.object_type.split('/').last.upcase
-- if activity.target.present?
-  in
-  %abbr{:title => activity.target.object_type}= activity.target.object_type.split('/').last.upcase
-= time_ago_in_words activity.published_at
-ago
+- content_tag_for :div, activity do
+  - link_to activity.actor.url_id do
+    = activity.actor.title.present? ? activity.actor.title : activity.actor.url_id
+  &nbsp;
+  %abbr{:title => activity.verb}= activity.verb.split('/').last.upcase
+  a
+  %abbr{:title => activity.object.object_type }= activity.object.object_type.split('/').last.upcase
+  - if activity.target.present?
+    in
+    %abbr{:title => activity.target.object_type}= activity.target.object_type.split('/').last.upcase
+  = time_ago_in_words activity.published_at
+  ago
 
-= link_to '(activity permalink)', permalink_path(activity.permalink)
+  = link_to '(activity permalink)', permalink_path(activity.permalink)
 
-.linked-object.round
-  - link_to activity.object.url_id do
-    = activity.object.title.present? ? activity.object.title : activity.object.url_id
+  .object
+    .left.object_type
+      Object
+    .linked-object.round
+      - link_to activity.object.url_id do
+        = activity.object.title.present? ? activity.object.title : activity.object.url_id
 
-- if activity.target.present?
-  .linked-object.round
-    - link_to activity.target.url_id do
-      = activity.target.title.present? ? activity.target.title : activity.target.url_id
+  - if activity.target.present?
+    .object
+      .left.target
+        Target
+      .linked-object.round
+        - link_to activity.target.url_id do
+          = activity.target.title.present? ? activity.target.title : activity.target.url_id
+  .clear

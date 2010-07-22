@@ -3,10 +3,10 @@ class ActivitiesController < ApplicationController
   
   def index
     if logged_in?
-      @activities = current_user.activities
+      @activities = current_user.activities.reverse
     else
       @activities = (session[:activities] || []).map { |a| Activity.find(a) rescue nil }.compact
-      Activity.find(:all, :conditions => {:is_public => true}).map{|a| @activities << a}
+      Activity.find(:all, :conditions => {:is_public => true}).reverse.map{|a| @activities << a}
     end
   end
 
