@@ -1,10 +1,11 @@
 - title "Activities"
 
-- for activity in @activities
-  %p
-    = activity.to_sentence
-    %br
-    = link_to 'Permalink', permalink_path(activity.permalink)
+%ul#activities
+  - for activity in @activities
+    %li
+      = render :partial => 'activity', :locals => {:activity => activity}
+      %br
+      
   
 
 %p= link_to "New Activity", new_activity_path

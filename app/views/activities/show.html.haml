@@ -1,23 +1,17 @@
 - title "Activity"
+-if logged_in? and  @activity.user_id == current_user.id
+  %p.manage
+    = link_to "Permalink", permalink_path(@activity.permalink), :class => 'link'
+    |
+    = link_to "Edit", edit_activity_path(@activity), :class => 'edit'
+    |
+    = link_to "Destroy", @activity, :confirm => 'Are you sure?', :class => 'delete', :method => :delete
+    |
+    = link_to "Create another", new_activity_path, :class => 'new'
 
-%p= link_to "Permalink", permalink_path(:id => @activity.permalink)
-
-%p
-  - link_to @activity.actor.url_id do
-    = @activity.actor.title.present? ? @activity.actor.title : @activity.actor.url_id
-
-  %abbr{:title => @activity.verb}= @activity.verb.split('/').last.upcase
-
-  - link_to @activity.object.url_id do
-    = @activity.object.title.present? ? @activity.object.title : @activity.object.url_id
-
-  - if @activity.target.present?
-    - link_to @activity.target.url_id do
-      = @activity.target.title.present? ? @activity.target.title : @activity.target.url_id
-
-  = time_ago_in_words @activity.published_at
-  ago
-
+#activity
+  =render :partial => 'activity', :locals => {:activity => @activity}
+  
 
 %h3 JSON
 ~ CodeRay.scan(@activity.to_json, 'json').div(:line_numbers => :table, :css => :class)
@@ -25,9 +19,3 @@
 %h3 XML
 ~ CodeRay.scan(@activity.to_xml, 'xml').div(:line_numbers => :table, :css => :class)
 
-%p
-  = link_to "Edit", edit_activity_path(@activity)
-  |
-  = link_to "Destroy", @activity, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "Create another", new_activity_path
