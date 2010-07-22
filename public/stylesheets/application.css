@@ -30,7 +30,6 @@ a {
 
 #page {
   width: 900px;
-  min-height: 500px;
   margin: 0 auto;
   background: white;
   padding: 0px 20px;
@@ -60,6 +59,20 @@ ul.nav li {
 ul.nav li a {
   color: black;
   font-size: 16px;
+}
+
+#footer {
+  width: 60%;
+  margin: 30px auto;
+  text-align: center;
+  padding: 100px 0 20px 0;
+}
+
+#footer p {
+  color: gray;
+  font-size: 10px;
+  padding-top: 5px;
+  border-top: 1px dotted gray;
 }
 
 
