@@ -20,16 +20,16 @@
         .clear
         #nav
           %ul.nav
-            %li.round 
+            %li 
               %a{:href => '/'} Home
-            %li.round
+            %li
               %a{:href => '/activities/new'} New activity
-            %li.round
+            %li
               %a{:href => '/activities'} Browse Activities
-            %li.round
+            %li
               %a{:href => '/faq'} FAQ
         .clear
-      #body
+      #content
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         - if show_title?
