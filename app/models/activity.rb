@@ -42,11 +42,6 @@ class Activity < ActiveRecord::Base
     ]
   end
   
-  def to_sentence
-    msg = "<a href='/activities/#{self.id}'>#{self.object.title}</a> - #{time_ago_in_words published_at} ago<br/>"
-    msg += "<a href='#{self.actor.url_id}'>#{self.actor.title}</a> | #{self.verb} | <a href='#{self.object.url_id}'>#{self.object.object_type}</a>"
-  end
-
   def to_json
     a = {
       :id => activity_url(self),
