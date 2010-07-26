@@ -9,6 +9,19 @@
     = link_to "Destroy", @activity, :confirm => 'Are you sure?', :class => 'delete', :method => :delete
     |
     = link_to "Create another", new_activity_path, :class => 'new'
+    |
+    = link_to_function "Submit as a public example", "jQuery('#submit_as_public_example').slideDown()", :id => 'submit_as_public_example_link', :class => 'submit'
+
+- if logged_in? and @activity.user_id == current_user.id
+  #submit_as_public_example{:style => 'display:none'}
+    - form_remote_tag :url => publish_activity_path(@activity), :html => { :class => 'hform largeform sticky' } do
+      #error_message
+      
+      %p
+        = label :activity, :public_name
+        %span.hint.quiet Public title of this example
+        = text_field :activity, :public_name
+        = submit_tag "Publish"
 
 #activity
   =render :partial => 'activity', :locals => {:activity => @activity}

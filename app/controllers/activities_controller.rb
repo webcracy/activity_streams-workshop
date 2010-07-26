@@ -55,6 +55,14 @@ class ActivitiesController < ApplicationController
       render :action => 'edit'
     end
   end
+
+  def publish
+    @activity = find_from_session_or_user(params[:id])
+    @activity.is_public = true
+    @activity.public_name = params[:activity][:public_name] rescue nil
+
+    @activity.save
+  end
   
   def destroy
     @activity = find_from_session_or_user(params[:id])

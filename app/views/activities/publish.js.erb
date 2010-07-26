@@ -1,0 +1,7 @@
+<% if @activity.valid? %>
+  $('#submit_as_public_example').html("Thank you!").effect("highlight", {}, 3000).delay(3000).fadeOut();
+  $('#submit_as_public_example_link').fadeOut();
+<% else %>
+  $('#activity_public_name').addClass('fieldWithErrors');
+  $('#error_message').html("<%= @activity.errors.full_messages.to_sentence %>").fadeIn();
+<% end %>

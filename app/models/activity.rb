@@ -21,6 +21,7 @@ class Activity < ActiveRecord::Base
   validates_presence_of   :verb
   validates_presence_of   :object
   validates_presence_of   :published_at
+  validates_presence_of   :public_name, :if => Proc.new { |a| a.is_public }
   
   before_create :add_permalink
 

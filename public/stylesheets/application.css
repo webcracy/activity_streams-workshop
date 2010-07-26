@@ -114,8 +114,18 @@ ul.nav li a {
   background-color: #ffcccc;
   border: solid 1px #cc6666; }
 
+#error_message {
+  display: none;
+  font-size: 0.8em;
+  padding: 2px 2px;
+  margin: 0;
+  background-color: #ffcccc;
+  border: solid 1px #cc6666;
+}
+
 .fieldWithErrors {
-  display: inline; }
+  display: inline;
+  border: solid 2px #cc6666; }
 
 #errorExplanation {
   width: 400px;
