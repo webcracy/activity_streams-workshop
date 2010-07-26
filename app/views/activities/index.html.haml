@@ -13,7 +13,9 @@
 
 %ul#activities
   - unless logged_in?
-    %p You can <a href="/login" title="Login">login</a> using an external Identity Provider to <strong>save your activities</strong>.
+    %p
+      You can #{link_to 'Login', login_path} using an external Identity Provider to <strong>save</strong> your activities
+    
   - else
     - for activity in @activities
       %li
