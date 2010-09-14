@@ -28,7 +28,7 @@ class OauthConsumersController < ApplicationController
         user_profile = aidentiti_client.grab_credentials.user
         # Do we need to create this user, or just load it?
         user = User.find_or_create_by_email(:email => user_profile.email, :login => user_profile.login)
-        user.password = user.password_confirmation = user.login.reverse
+        #user.password = user.password_confirmation = user.login.reverse
         user.save
 
         # Transfer any activities this user created as anonymous to the new found user

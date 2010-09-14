@@ -1,7 +1,6 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
+  skip_before_filter :verify_authenticity_token, :only => [:rpx_token] # RPX does not pass Rails form tokens...
 
   # render new.rhtml
   def new
@@ -33,6 +32,15 @@ class SessionsController < ApplicationController
     logout_killing_session!
     flash[:notice] = "You have been logged out."
     redirect_back_or_default('/')
+  end
+  
+  # user_data
+  # found: {:name=>'John Doe', :username => 'john', :email=>'john@doe.com', :identifier=>'blug.google.com/openid/dsdfsdfs3f3'}
+  # not found: nil (can happen with e.g. invalid tokens)
+  def rpx_token
+    raise "hackers?" unless data = RPXNow.user_data(params[:token])
+    self.current_user = User.find_by_email(data[:email]) || User.create!(data)
+    redirect_to '/'
   end
 
 protected

@@ -1,7 +1,5 @@
 %h1 Services
 
-
-
 -if @consumer_tokens and @services
   -if @consumer_tokens.empty?
     %p
@@ -26,3 +24,5 @@
   %h3 Authenticate with Aidentiti
   %p
     =link_to "Authenticate with Aidentiti", '/oauth_consumers/aidentiti'
+    
+  =RPXNow.embed_code('asws', url_for(:controller=>:sessions, :action=>:rpx_token, :default_provider=>'openid', :only_path => false))

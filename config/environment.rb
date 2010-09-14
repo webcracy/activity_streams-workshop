@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   config.gem 'json'
   config.gem 'coderay'
   config.gem 'builder'
+  config.gem 'rpx_now'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -46,4 +47,8 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  config.after_initialize do # so rake gems:install works
+    RPXNow.api_key = "046934cbefdcbba00143f3499e89d274f913ec79"
+  end
+  
 end
