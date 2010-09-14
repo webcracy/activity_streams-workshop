@@ -164,6 +164,7 @@ ul#activities li {
 }
 
 p.manage {
+  line-height: 1.5em;
   margin: -40px 0 25px 100px;
 }
 
@@ -176,8 +177,13 @@ p.manage.x-l-margin {
 }
 
 .activity {
-  border-left: 2px solid gray;
+  box-shadow: 10px 10px 5px #888; padding: 5px 5px 5px 15px;
+  -moz-box-shadow: 10px 10px 5px #888; padding: 5px 5px 5px 15px;
+  -webkit-box-shadow: 10px 10px 5px #888; padding: 5px 5px 5px 15px;
   padding-left: 10px;
+  background-color: #F3F3F3;
+  border-color: black;
+  
 }
 
 .object {
@@ -187,6 +193,7 @@ p.manage.x-l-margin {
 
 .object .left {
   float: left;
+  width: 35px;
   margin-top: 5px;
   padding: 10px;
   font-size: 12px;
@@ -201,6 +208,11 @@ p.manage.x-l-margin {
   font-size: 12px;
 }
 
+.snippet {
+  width: 100%;
+  overflow: auto;
+}
+
 .CodeRay {
   background-color: #232323;
   border: 1px solid black;
@@ -212,7 +224,9 @@ p.manage.x-l-margin {
   margin: 12px 0; }
   .CodeRay pre {
     margin: 0px;
-    padding: 0px; }
+    padding: 0px; 
+    overflow: auto;
+  }
   .CodeRay .an {
     color: #e7be69; }
   .CodeRay .c {

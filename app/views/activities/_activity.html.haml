@@ -1,8 +1,6 @@
 - content_tag_for :div, activity do
-  - link_to activity.actor.url_id do
-    = activity.actor.title.present? ? activity.actor.title : activity.actor.url_id
-  &nbsp;
-  %abbr{:title => activity.verb}= activity.verb.split('/').last.upcase
+  %abbr{:title => activity.actor.url_id}= activity.actor.title.present? ? activity.actor.title.upcase : activity.actor.url_id
+  %abbr{:title => activity.verb}= activity.verb_title
   a
   %abbr{:title => activity.object.object_type }= activity.object.object_type.split('/').last.upcase
   - if activity.target.present?
@@ -12,7 +10,22 @@
   ago
 
   = link_to '(activity permalink)', permalink_path(activity.permalink)
+  
+  .object
+    .left.object_type
+      Actor
+    .linked-object.round
+      - link_to activity.actor.url_id do
+        = activity.actor.title.present? ? activity.actor.title : activity.actor.url_id
 
+  .object
+    .left.object_type
+      Verb
+    .linked-object.round
+      - link_to activity.verb do
+        = activity.verb_title
+
+  
   .object
     .left.object_type
       Object

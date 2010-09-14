@@ -43,6 +43,10 @@ class Activity < ActiveRecord::Base
     ]
   end
   
+  def verb_title
+    verb.split('/').last.upcase
+  end
+  
   def to_json
     a = {
       :id => activity_url(self),
@@ -57,7 +61,7 @@ class Activity < ActiveRecord::Base
        :object => {
          :id => self.object.url_id,
          :title => self.object.title,
-         :objectType => self.object.object_type
+         :objectType => self.object.object_type 
        }
     }
     
