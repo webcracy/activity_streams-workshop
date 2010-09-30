@@ -39,7 +39,11 @@ class SessionsController < ApplicationController
   # not found: nil (can happen with e.g. invalid tokens)
   def rpx_token
     raise "hackers?" unless data = RPXNow.user_data(params[:token])
-    self.current_user = User.find_by_email(data[:email]) || User.create!(data)
+    unless data[:email].nil?
+      self.current_user = User.find_by_email(data[:email]) || User.create!(data)
+    else
+      self.current_user = User.find_by_login(data[:username]) || User.create!(data)
+    end
     redirect_to '/'
   end
 

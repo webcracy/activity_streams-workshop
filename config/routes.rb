@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.faq '/faq', :controller => 'home', :action => 'faq'
   map.about '/about', :controller => 'home', :action => 'faq'
+  map.privacy '/privacy', :controller => 'home', :action => 'privacy'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'OauthConsumers', :action => 'index'
   

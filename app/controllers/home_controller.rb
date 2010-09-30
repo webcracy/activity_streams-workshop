@@ -3,4 +3,6 @@ class HomeController < ApplicationController
   end
   def faq
   end
+  def privacy
+  end
 end

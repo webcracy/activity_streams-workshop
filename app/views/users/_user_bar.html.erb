@@ -1,6 +1,6 @@
 <% if logged_in? -%>
   <div id="user-bar-greeting">
-    Logged in as <%= current_user.email %>
+    Logged in as <%= current_user.email || current_user.name %>
     <!-- <%= link_to_current_user :content_method => :login %> -->
   </div>
   <div id="user-bar-action" style="text-align: right;">
