@@ -62,7 +62,8 @@ class Activity < ActiveRecord::Base
          :id => self.object.url_id,
          :title => self.object.title,
          :objectType => self.object.object_type 
-       }
+       },
+       :verb => self.verb
     }
     
     if self.target.present?
